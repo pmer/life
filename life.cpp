@@ -126,7 +126,7 @@ void gridPrint(Grid *g) {
 		putchar('|');
 		for (int x = 0; x < g->w; x++) {
 			bool alive = g->cells[y * g->h + x];
-			putchar(alive ? '1' : '0');
+			putchar(alive ? 'o' : ' ');
 		}
 		putchar('|');
 		putchar('\n');

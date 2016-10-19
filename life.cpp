@@ -116,27 +116,34 @@ Grid *gridClone(Grid *g) {
 }
 
 void gridPrint(Grid *g) {
-	putchar('+');
+	char out[(g->w + 3) * (g->h + 2) + 1];
+	int n = 0;
+
+	out[n++] = '+';
 	for (int x = 0; x < g->w; x++) {
-		putchar('-');
+		out[n++] = '-';
 	}
-	putchar('+');
-	putchar('\n');
+	out[n++] = '+';
+	out[n++] = '\n';
 	for (int y = 0; y < g->h; y++) {
-		putchar('|');
+		out[n++] = '|';
 		for (int x = 0; x < g->w; x++) {
 			bool alive = g->cells[y * g->h + x];
-			putchar(alive ? 'o' : ' ');
+			out[n++] = alive ? 'o' : ' ';
 		}
-		putchar('|');
-		putchar('\n');
+		out[n++] = '|';
+		out[n++] = '\n';
 	}
-	putchar('+');
+	out[n++] = '+';
 	for (int x = 0; x < g->w; x++) {
-		putchar('-');
+		out[n++] = '-';
 	}
-	putchar('+');
-	putchar('\n');
+	out[n++] = '+';
+	out[n++] = '\n';
+
+	out[n++] = '\0';
+
+	printf("%s", out);
 }
 
 bool neighbor(Grid *g, int x, int y) {

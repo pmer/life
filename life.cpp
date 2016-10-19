@@ -76,6 +76,7 @@ Grid *gridFromFile(const char *path) {
 
 	fgets(line, sizeof(line), f);
 	w = atoi(line);
+
 	fgets(line, sizeof(line), f);
 	h = atoi(line);
 
@@ -125,6 +126,7 @@ void gridPrint(Grid *g) {
 	}
 	out[n++] = '+';
 	out[n++] = '\n';
+
 	for (int y = 0; y < g->h; y++) {
 		out[n++] = '|';
 		for (int x = 0; x < g->w; x++) {
@@ -134,6 +136,7 @@ void gridPrint(Grid *g) {
 		out[n++] = '|';
 		out[n++] = '\n';
 	}
+
 	out[n++] = '+';
 	for (int x = 0; x < g->w; x++) {
 		out[n++] = '-';
@@ -211,9 +214,11 @@ int main() {
 
 	for (int i = 0; i < 100; i++) {
 		usleep(100 * 1000);
+
 		Grid *next = generation(g);
 		gridDestroy(g);
 		g = next;
+
 		gridPrint(g);
 	}
 
